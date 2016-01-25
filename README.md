@@ -30,14 +30,14 @@ Libraries
 ----------
 All the libraries are stored under the libraries directory which is subdivided depending on the peripherals/sensors you need to handle.
 
-r2wheel\hbridge.py: Library HBridge for a single H-Bridge (1 motor control) and DualHBridge (2 motors control).
-                    Quite good to manage a L293D
-                    Both classes contains basic move method (forward, backward, halt) with speed management.
-                    DualHBridge already manage path derivation due to the motors not being exactly identicals 
-r2wheel\r2wheel.py: Library Robot2Wheel extending DualHBridge class to control a 2 Wheels robot plateform.
-                    Implement turn() method with RIGHT_ROTATE, LEFT_ROTATE, RIGHT_BEND, LEFT_BEND
-                    Can switch forward/backward for each motor (manage from code instead of re-wiring the motor)
-                    Can switch right/left motor from code (instead of re-wiring the motors)
+* __r2wheel\hbridge.py__ : Library HBridge for a single H-Bridge (1 motor control) and DualHBridge (2 motors control).
+..Quite good to manage a L293D
+..Both classes contains basic move method (forward, backward, halt) with speed management.
+..DualHBridge already manage path derivation due to the motors not being exactly identicals 
+* __r2wheel\r2wheel.py__ : Library Robot2Wheel extending DualHBridge class to control a 2 Wheels robot plateform.
+..Implement turn() method with RIGHT_ROTATE, LEFT_ROTATE, RIGHT_BEND, LEFT_BEND
+..Can switch forward/backward for each motor (manage from code instead of re-wiring the motor)
+..Can switch right/left motor from code (instead of re-wiring the motors)
 
 Samples
 -------
