@@ -44,8 +44,8 @@ Samples
 This project will be conducted in several steps depending on request, contribution and implemented ideas.
 So I do order the sample folder with numerical prefix (2 digits). This numerical order also show the historical steps of the project. 
 
-01-r2wheel-test\    Robot-2-wheel wiring AND test scripts. 
-                    Sample scripts used to test the assembled "Robot 2 Wheel" and classes HBridge, Robot2Wheel  
+* __01-r2wheel-test\__  : Robot-2-wheel wiring AND test scripts. 
+ * Sample scripts used to test the assembled "Robot 2 Wheel" and classes HBridge, Robot2Wheel  
 
 License: GPL v3
 ---------------
