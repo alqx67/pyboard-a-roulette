@@ -1,12 +1,31 @@
-# Commande d'une plateforme robotique 2 roues avec un pont-H L293D 
-#   et MicroPython PyBoard
+##
+# Commande d'une plateforme robotique 2 roues avec un pont-H L293D et MicroPython PyBoard
+# Control a 2 wheel robotic plateform with a L293D H Bridge and MicroPython PyBoard
+#
 #   http://shop.mchobby.be/product.php?id_product=741
 #   http://shop.mchobby.be/product.php?id_product=155
-#   http://shop.mchobby.be/product.php?id_product=155
+#   http://shop.mchobby.be/product.php?id_product=570
 # 
-# Voir Tutoriel 
-#   http://wiki.mchobby.be/index.php?title=Hack-micropython-L293D
+# Voir Tutoriel - See our french tutorial
+#   http://wiki.mchobby.be/index.php?title=Hack-micropython-Robot2Wheel
 #
+# Copyright 2016 - Dominique Meurisse for MC Hobby SPRL <info (at) mchobby (dot) be>
+#
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##
 import pyb
 from hbridge import DualHBridge
 
@@ -24,6 +43,11 @@ class Robot2Wheel( DualHBridge ):
 
     (RIGHT_ROTATE, LEFT_ROTATE, RIGHT_BEND, LEFT_BEND ) = ('RP','LP','RB','LB')
     DIRECTIONS =  (RIGHT_ROTATE, LEFT_ROTATE, RIGHT_BEND, LEFT_BEND ) 
+
+    (HALTED,MOVE_FORWARD,MOVE_BACKWARD) = ('H', 'MF', 'MB') 
+    STATES = (HALTED,MOVE_FORWARD,MOVE_BACKWARD) + DIRECTIONS
+
+    _state = None # Current state of the robot.
     
     def __init__( self, reverse_mot1 = False, reverse_mot2 = False, fix_rotate = False, derivative_fix = 0 ):
         """ Initialize the DualHBridge L293D. Allows you to reverse the 
@@ -43,6 +67,11 @@ class Robot2Wheel( DualHBridge ):
             # Robot is apparently rotating the wrong way... this is because
             # motor1 has been wired in place of the motor 2.
             DualHBridge.__init__( self, mot2, self.MOT2_PWM, mot1, self.MOT1_PWM, derivative_fix )
+        self._state = Robot2Wheel.HALTED
+	
+    @property 
+    def state( self ):
+        return self._state
 
     def turn( self, direction, speed=100 ):
         if not( direction in self.DIRECTIONS ):
@@ -59,3 +88,22 @@ class Robot2Wheel( DualHBridge ):
         elif direction == self.LEFT_BEND:
             self.motor1.forward( 100-speed )
             self.motor2.forward( 100 )
+        self._state = direction
+
+    def right( self, speed=100 ):
+        self.turn( Robot2Wheel.RIGHT_ROTATE, speed )
+
+    def left( self, speed=100 ):
+        self.turn( Robot2Wheel.LEFT_ROTATE, speed )
+
+    def halt( self ):
+        super( Robot2Wheel, self ).halt()
+        self._state = Robot2Wheel.HALTED
+
+    def forward( self, speed = 100, speed_2 = None ):
+        super( Robot2Wheel, self ).forward( speed, speed_2 )
+        self._state = Robot2Wheel.MOVE_FORWARD
+
+    def backward( self, speed = 100, speed_2 = None ):
+        super( Robot2Wheel, self ).backward( speed, speed_2 )
+        self._state = Robot2Wheel.MOVE_BACKWARD

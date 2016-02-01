@@ -1,10 +1,33 @@
-# SAMPLE AND TEST FOR Robot2Wheel class
+##
+# Exemples et test pour la classe  Robot2Wheel class 
+#     utilisée avec la plateforme robotique 2 roues, un pont-H L293D et MicroPython PyBoard
+# Sample and test for Robot2Wheel class
+#     used with the Robot 2 wheel kit, a L293 H-Bridge and MicroPython Python
 #
-# Handle a L293D dual H-Brige (pont-H L293D) with MicroPython PyBoard
+#   http://shop.mchobby.be/product.php?id_product=741
 #   http://shop.mchobby.be/product.php?id_product=155
-# See the tutorial (and wiring) on  
-#   http://wiki.mchobby.be/index.php?title=Hack-micropython-L293D
+#   http://shop.mchobby.be/product.php?id_product=570
+# 
+# Voir Tutoriel - See our french tutorial
+#   http://wiki.mchobby.be/index.php?title=Hack-micropython-Robot2Wheel
 #
+# Copyright 2016 - Dominique Meurisse for MC Hobby SPRL <info (at) mchobby (dot) be>
+#
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##
 from pyb import delay
 from r2wheel import Robot2Wheel
 
