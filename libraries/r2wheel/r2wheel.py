@@ -36,7 +36,7 @@ class Robot2Wheel( DualHBridge ):
            http://wiki.mchobby.be/index.php?title=Hack-micropython-L293D """
 
     MOT1_PINS = ( pyb.Pin.board.X6, pyb.Pin.board.X5 )
-    MOT1_PWM = {'pin' : pyb.Pin.board.X3, 'timer' : 2, 'channel' : 3 }   
+    MOT1_PWM = {'pin' : pyb.Pin.board.X3, 'timer' : 5, 'channel' : 3 }   
 
     MOT2_PINS = ( pyb.Pin.board.X7, pyb.Pin.board.X8 )
     MOT2_PWM = {'pin' : pyb.Pin.board.X4, 'timer' : 5, 'channel' : 4 }  
